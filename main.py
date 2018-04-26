@@ -100,7 +100,7 @@ def erase_lines(bmap, polte, floors):
         if f in floors:
             for b in range(0, len(bmap[0])):
                 if bmap[0][b][1] < f:
-                    bmap[0][b][1] += 1
+                    bmap[0][b][1] += len(floors)
 
 def check_lines():
     global bmap
