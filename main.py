@@ -1,6 +1,8 @@
 import time
 from random import randint
 from sense_hat import SenseHat
+# Uncomment line below for Sense Hat Emulator
+#from sense_emu import SenseHat
 
 sense = SenseHat()
 sense.clear(0, 0, 0)
@@ -8,6 +10,7 @@ sense.clear(0, 0, 0)
 bmap = [[],[]]
 block = []
 gameover = False
+score = 0
 
 #Configuration
 ttf = 1 # Time-to-fall, in seconds, time for a block to fall one level
@@ -102,6 +105,7 @@ def erase_lines(bmap, polte, floors):
 def check_lines():
     global bmap
     global block
+    global score
     fl0 = []
     fl1 = []
     fl2 = []
@@ -157,6 +161,7 @@ def check_lines():
             polte.append(fl0)
             floors.append(0)
         if polte != []:
+            score += len(floors)
             erase_lines(bmap, polte, floors)
 
 def draw_map():
@@ -407,4 +412,5 @@ while (not gameover):
         draw_map()
     time.sleep(0.1)
     sense.clear(0, 0, 0)
+sense.show_message("Score: %s " % score)
 sense.show_message("Game Over")
